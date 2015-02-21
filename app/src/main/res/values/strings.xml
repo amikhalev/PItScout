@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Global Strings -->
+    <string name="app_name">PitScout</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

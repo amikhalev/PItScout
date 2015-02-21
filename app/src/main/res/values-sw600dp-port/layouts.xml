@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="is_paned" type="bool">false</item>
+    <item name="scouting_layout" type="layout">@layout/activity_scouting_tabs</item>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_scouting">Pit Scouting</string>
+    <string name="title_basic_robot">Basic Robot</string>
+    <string name="title_auto">Auto</string>
+    <string name="title_teleop">Teleop</string>
+    <string name="text_team_number">Team Number</string>
+    <string name="drivetrain_mecanum">Mecanum</string>
+    <string name="drivetrain_omni">Omni</string>
+    <string name="drivetrain_traction">Traction</string>
+    <string name="drive_train">Drive Train</string>
+    <string name="team_list_io_error">Unable to read team list file. Check the path in Settings</string>
+    <string name="team_list_parse_error">Failed to parse team list file</string>
+    <string name="label_team_number">Team Number</string>
+    <string name="label_pit_contact">Pit Contact</string>
+    <string name="label_drive_train">Drive Train</string>
+    <string name="label_robot_dimensions">Robot Dimensions (inches)</string>
+    <string name="hint_width">Width</string>
+    <string name="label_length">Length</string>
+    <string name="label_height">Height</string>
+</resources>

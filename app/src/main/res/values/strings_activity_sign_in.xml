@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SignInActivity Strings -->
+    <string name="text_sign_in">Sign In</string>
+    <string name="label_name">Name</string>
+    <string name="button_name">Next</string>
+    <string name="error_enter_name">Please enter your name</string>
+    <string name="label_competition">Competition</string>
+</resources>
