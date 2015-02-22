@@ -10,8 +10,15 @@ public class ScoutingData {
     private double width;
     private double length;
     private double height;
+    private boolean robotSet;
+    private int autoTotes;
+    private int autoBins;
 
     public ScoutingData() {
+    }
+
+    public static String getCsvHeader() {
+        return "Team Number,Pit Contact,Drive Train,Wheels,Width,Length,Height,Robot Set,Auto Totes,Auto Bins";
     }
 
     public void setTeamNumber(int teamNumber) {
@@ -42,14 +49,16 @@ public class ScoutingData {
         this.height = height;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("ScoutingData{");
-        sb.append("teamNumber=").append(teamNumber);
-        sb.append(", driveTrain='").append(driveTrain).append('\'');
-        sb.append(", wheels=").append(Arrays.toString(wheels));
-        sb.append('}');
-        return sb.toString();
+    public void setRobotSet(boolean robotSet) {
+        this.robotSet = robotSet;
+    }
+
+    public void setAutoTotes(int autoTotes) {
+        this.autoTotes = autoTotes;
+    }
+
+    public void setAutoBins(int autoBins) {
+        this.autoBins = autoBins;
     }
 
     public String toCsvLine() {
@@ -66,10 +75,9 @@ public class ScoutingData {
         sb.append(',').append(width);
         sb.append(',').append(length);
         sb.append(',').append(height);
+        sb.append(',').append(robotSet);
+        sb.append(',').append(autoTotes);
+        sb.append(',').append(autoBins);
         return sb.toString();
-    }
-
-    public static String getCsvHeader() {
-        return "Team Number,Pit Contact,Drive Train,Wheels,Width,Length,Height";
     }
 }

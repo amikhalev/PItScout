@@ -4,5 +4,8 @@
     <!-- Global Strings -->
     <string name="app_name">PitScout</string>
     <string name="action_settings">Settings</string>
+    <string name="label_robot_set">Robot Set</string>
+    <string name="label_totes">Totes</string>
+    <string name="label_bins">Bins</string>
 
 </resources>

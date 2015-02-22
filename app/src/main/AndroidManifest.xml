@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.teamtators.pitscout" >
+    package="org.teamtators.pitscout">
+
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
 
     <application
+        android:name=".PitScoutApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".SignInActivity"
-            android:label="@string/title_activity_scouting" >
+            android:name=".ui.SignInActivity"
+            android:label="@string/title_activity_scouting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,17 +20,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScoutingActivity"
+            android:name=".ui.ScoutingActivity"
             android:label="@string/title_activity_scouting"
-            android:parentActivityName=".SignInActivity" >
+            android:parentActivityName=".ui.SignInActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SignInActivity" />
+                android:value=".ui.SignInActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
+            android:name=".ui.SettingsActivity"
+            android:label="@string/title_activity_settings"/>
     </application>
 
 </manifest>

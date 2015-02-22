@@ -9,25 +9,25 @@
 
     <fragment
         android:id="@+id/basic_robot_fragment"
-        android:name="org.teamtators.pitscout.BasicRobotFragment"
-        android:layout_width="wrap_content"
+        android:name="org.teamtators.pitscout.ui.BasicRobotFragment"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         tools:layout="@layout/fragment_basic_robot" />
 
     <fragment
         android:id="@+id/auto_fragment"
-        android:name="org.teamtators.pitscout.AutoFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:name="org.teamtators.pitscout.ui.AutoFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         tools:layout="@layout/fragment_auto" />
 
     <fragment
         android:id="@+id/teleop_fragment"
-        android:name="org.teamtators.pitscout.TeleopFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:name="org.teamtators.pitscout.ui.TeleopFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         tools:layout="@layout/fragment_teleop" />
 </LinearLayout>

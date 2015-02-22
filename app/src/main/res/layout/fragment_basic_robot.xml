@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.teamtators.pitscout.BasicRobotFragment">
+    tools:context="org.teamtators.pitscout.ui.BasicRobotFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +26,10 @@
             android:layout_below="@+id/label_team_number"
             android:hint="@string/text_team_number"
             android:inputType="number"
-            android:maxLength="4" />
+            android:maxLength="4">
+
+            <requestFocus />
+        </Spinner>
 
         <TextView
             android:id="@+id/label_pit_contact"
@@ -74,7 +77,7 @@
             android:layout_below="@+id/label_drive_train"
             android:imeOptions="actionNext"
             android:inputType="textCapWords|textAutoComplete"
-            android:nextFocusForward="@+id/robot_width" />
+            android:nextFocusForward="@+id/wheel_traction" />
 
         <LinearLayout
             android:id="@+id/wheels"
@@ -106,6 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
+                android:nextFocusForward="@+id/robot_width"
                 android:text="@string/drivetrain_mecanum" />
 
         </LinearLayout>

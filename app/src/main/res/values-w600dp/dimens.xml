@@ -1,4 +1,4 @@
 <resources>
-    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="activity_sign_in_horizontal_margin">64dp</dimen>
     <dimen name="activity_login_width">400dp</dimen>
 </resources>

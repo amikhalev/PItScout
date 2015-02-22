@@ -1,9 +1,8 @@
-package org.teamtators.pitscout;
+package org.teamtators.pitscout.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -12,11 +11,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.teamtators.pitscout.PitScoutBaseActivity;
+import org.teamtators.pitscout.R;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class SignInActivity extends ActionBarActivity {
+public class SignInActivity extends PitScoutBaseActivity {
     public static final String PREFERENCES_NAME = "scouter_info";
     public static final String KEY_SCOUTER_NAME = "scouter_name";
     public static final String KEY_COMPETITION = "competition";

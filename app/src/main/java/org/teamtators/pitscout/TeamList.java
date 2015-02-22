@@ -1,13 +1,14 @@
 package org.teamtators.pitscout;
 
 import android.content.Context;
-import android.os.Environment;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 
+import org.teamtators.pitscout.ui.SettingsActivity;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.text.ParseException;
@@ -18,43 +19,47 @@ import java.util.List;
  * Created by alex on 2/19/15.
  */
 public class TeamList {
-    private static final String DEFAULT_TEAM_LIST_PATH = Environment
-            .getExternalStorageDirectory()
-            .getAbsolutePath() + "/teamlist.csv";
-    private static List<Team> teamList = null;
+    private List<Team> teamList;
 
-    public static List<Team> readTeamList(Reader r) throws IOException, ParseException {
+    public TeamList() {
+
+    }
+
+    private List<Team> readTeamList(Reader r) throws IOException, ParseException {
         List<Team> result = new ArrayList<>();
         BufferedReader reader = new BufferedReader(r);
         int offset = 0;
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length != 2)
-                throw new ParseException("Line had more than two parts", offset);
+            String[] parts = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // magic csv regex!
+            if (parts.length != 3)
+                throw new ParseException("Expected three parts in line", offset);
+            String location = parts[0];
+            String name = parts[1];
             int number;
             try {
-                number = Integer.parseInt(parts[0]);
+                number = Integer.parseInt(parts[2]);
             } catch (NumberFormatException e) {
                 throw new ParseException("Invalid team number", offset);
             }
-            String name = parts[1];
-            result.add(new Team(number, name));
+            result.add(new Team(number, name, location));
             offset += line.length();
         }
         return result;
     }
 
-    public static List<Team> loadFromFile(File file) throws IOException, ParseException {
-        return readTeamList(new InputStreamReader(new FileInputStream(file)));
+    public void loadTeamList(Context context) throws IOException, ParseException, SecurityException {
+        String fileName = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(SettingsActivity.TEAM_LIST_FILE_PREFERENCE, SettingsActivity.DEFAULT_TEAM_LIST_PATH);
+        Uri uri = Uri.parse(fileName);
+        InputStream inputStream = context.getContentResolver().openInputStream(uri);
+        teamList = readTeamList(new InputStreamReader(inputStream));
     }
 
-    public static List<Team> getTeamList(Context context) throws IOException, ParseException {
+    public List<Team> getTeamList(Context context) throws IOException, ParseException {
         if (teamList == null) {
-            String fileName = PreferenceManager
-                    .getDefaultSharedPreferences(context)
-                    .getString("teamListFileName", DEFAULT_TEAM_LIST_PATH);
-            teamList = loadFromFile(new File(fileName));
+            loadTeamList(context);
         }
         return teamList;
     }
@@ -62,26 +67,24 @@ public class TeamList {
     public static class Team {
         private int number;
         private String name;
+        private String location;
 
-        public Team(int number, String name) {
+        public Team(int number, String name, String location) {
             this.number = number;
             this.name = name;
+            this.location = location;
         }
 
         public int getNumber() {
             return number;
         }
 
-        public void setNumber(int number) {
-            this.number = number;
-        }
-
         public String getName() {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public String getLocation() {
+            return location;
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.teamtators.pitscout;
+package org.teamtators.pitscout.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import org.teamtators.pitscout.DataPopulator;
+import org.teamtators.pitscout.PitScoutBaseActivity;
+import org.teamtators.pitscout.R;
+import org.teamtators.pitscout.ScoutingData;
 
 import java.util.Locale;
 
@@ -20,7 +24,7 @@ import butterknife.InjectView;
 import butterknife.Optional;
 
 
-public class ScoutingActivity extends ActionBarActivity implements ActionBar.TabListener {
+public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.TabListener {
     SectionsPagerAdapter mSectionsPagerAdapter;
     @InjectView(R.id.pager)
     @Optional

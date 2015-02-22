@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
-    tools:context="org.teamtators.pitscout.ScoutingActivity">
+    tools:context="org.teamtators.pitscout.ui.ScoutingActivity">
 
     <android.support.v4.view.PagerTabStrip
         android:layout_width="fill_parent"

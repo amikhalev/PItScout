@@ -2,12 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.teamtators.pitscout.TeleopFragment">
+    tools:context="org.teamtators.pitscout.ui.TeleopFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
 
     </RelativeLayout>
