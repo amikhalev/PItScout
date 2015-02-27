@@ -1,11 +1,9 @@
 package org.teamtators.pitscout.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
@@ -15,11 +13,14 @@ import org.teamtators.pitscout.PitScoutBaseFragment;
 import org.teamtators.pitscout.R;
 import org.teamtators.pitscout.ScoutingData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.InjectViews;
 
 public class AutoFragment extends PitScoutBaseFragment implements DataPopulator {
-    private static final String[] STARTING_POSITIONS = {""};
     @InjectView(R.id.robot_set)
     CheckBox robotSet;
     @InjectView(R.id.auto_totes)
@@ -28,6 +29,8 @@ public class AutoFragment extends PitScoutBaseFragment implements DataPopulator 
     NumberPicker autoBins;
     @InjectView(R.id.starting_position)
     Spinner startingPosition;
+    @InjectViews({R.id.ground_pick, R.id.slot_feed})
+    CheckBox[] loadingMethodCheckBoxes;
 
     public AutoFragment() {
     }
@@ -55,9 +58,6 @@ public class AutoFragment extends PitScoutBaseFragment implements DataPopulator 
         autoBins.setMinValue(0);
         autoBins.setMaxValue(3);
 
-        ArrayAdapter<String> startingPositionAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, STARTING_POSITIONS);
-        startingPosition.setAdapter(startingPositionAdapter);
-
         return view;
     }
 
@@ -66,6 +66,15 @@ public class AutoFragment extends PitScoutBaseFragment implements DataPopulator 
         data.setRobotSet(robotSet.isChecked());
         data.setAutoTotes(autoTotes.getValue());
         data.setAutoBins(autoBins.getValue());
+        data.setStartingPosition((String) startingPosition.getSelectedItem());
+        List<String> loadingMethods = new ArrayList<>();
+        String[] loadingMethodNames = getResources().getStringArray(R.array.loading_methods);
+        for (int i = 0; i < loadingMethodCheckBoxes.length; ++i) {
+            if (loadingMethodCheckBoxes[i].isChecked()) {
+                loadingMethods.add(loadingMethodNames[i]);
+            }
+        }
+        data.setLoadingMethods(loadingMethods.toArray(new String[loadingMethods.size()]));
         return true;
     }
 }

@@ -39,15 +39,13 @@ import butterknife.InjectViews;
 public class BasicRobotFragment extends PitScoutBaseFragment implements DataPopulator {
     public static final List<Integer> DEFAULT_TEAM_LIST = Arrays.asList(254, 1717, 2122);
     public static final String TAG = "BasicRobotFragment";
-    public static final String[] DRIVE_TRAINS = new String[]{"Tank", "Swerve", "Slide", "Jump"};
-    private static final String[] WHEEL_NAMES = {"Traction", "Omni", "Mecanum"};
     @InjectView(R.id.team_number)
     protected Spinner teamNumber;
     @InjectView(R.id.pit_contact)
     protected EditText pitContact;
     @InjectView(R.id.drive_train)
     protected AutoCompleteTextView driveTrain;
-    @InjectViews({R.id.wheel_traction, R.id.wheel_omni, R.id.wheel_mecanum})
+    @InjectViews({R.id.wheel_traction, R.id.wheel_omni, R.id.wheel_mecanum, R.id.wheel_tank_tread})
     protected CheckBox[] wheelCheckboxes;
     @InjectView(R.id.robot_width)
     protected EditText robotWidth;
@@ -55,6 +53,8 @@ public class BasicRobotFragment extends PitScoutBaseFragment implements DataPopu
     protected EditText robotLength;
     @InjectView(R.id.robot_height)
     protected EditText robotHeight;
+    @InjectView(R.id.robot_weight)
+    protected EditText robotWeight;
     @Inject
     @ForApplication
     protected Context context;
@@ -82,11 +82,6 @@ public class BasicRobotFragment extends PitScoutBaseFragment implements DataPopu
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_basic_robot, container, false);
         ButterKnife.inject(this, view);
-
-        AutoCompleteTextView driveTrain = (AutoCompleteTextView) view.findViewById(R.id.drive_train);
-        ArrayAdapter driveTrainAdapter = new ArrayAdapter<>(view.getContext(),
-                android.R.layout.simple_dropdown_item_1line, DRIVE_TRAINS);
-        driveTrain.setAdapter(driveTrainAdapter);
 
         return view;
     }
@@ -139,9 +134,11 @@ public class BasicRobotFragment extends PitScoutBaseFragment implements DataPopu
         data.setPitContact(pitCont);
         data.setDriveTrain(driveTrain.getText().toString());
         List<String> wheels = new ArrayList<>();
+        String[] wheelNames = getResources().getStringArray(R.array.wheels);
         for (int i = 0; i < wheelCheckboxes.length; ++i) {
-            if (wheelCheckboxes[i].isChecked())
-                wheels.add(WHEEL_NAMES[i]);
+            if (wheelCheckboxes[i].isChecked()) {
+                wheels.add(wheelNames[i]);
+            }
         }
         if (wheels.size() == 0) {
             makeErrorToast("Wheel Type").show();
@@ -164,6 +161,12 @@ public class BasicRobotFragment extends PitScoutBaseFragment implements DataPopu
             data.setHeight(Double.parseDouble(robotHeight.getText().toString()));
         } catch (NumberFormatException e) {
             makeErrorToast("Robot Height").show();
+            return false;
+        }
+        try {
+            data.setWeight(Double.parseDouble(robotWeight.getText().toString()));
+        } catch (NumberFormatException e) {
+            makeErrorToast("Robot Weight").show();
             return false;
         }
         return true;

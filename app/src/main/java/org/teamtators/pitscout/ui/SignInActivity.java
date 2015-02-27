@@ -22,8 +22,6 @@ public class SignInActivity extends PitScoutBaseActivity {
     public static final String PREFERENCES_NAME = "scouter_info";
     public static final String KEY_SCOUTER_NAME = "scouter_name";
     public static final String KEY_COMPETITION = "competition";
-    // This should probably be more flexible in the future... but for now this works
-    public static final String[] COMPETITIONS = {"Utah", "Arizona", "Championship"};
     @InjectView(R.id.scouter_name)
     protected EditText scouterName;
     @InjectView(R.id.competition_name)
@@ -36,7 +34,8 @@ public class SignInActivity extends PitScoutBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.inject(this);
-        competitionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, COMPETITIONS);
+        competitionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.competitions));
         competition.setAdapter(competitionAdapter);
         preferences = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
     }

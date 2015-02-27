@@ -5,9 +5,10 @@
     <string name="title_auto">Auto</string>
     <string name="title_teleop">Teleop</string>
     <string name="text_team_number">Team Number</string>
-    <string name="drivetrain_mecanum">Mecanum</string>
-    <string name="drivetrain_omni">Omni</string>
-    <string name="drivetrain_traction">Traction</string>
+    <string name="wheel_mecanum">Mecanum</string>
+    <string name="wheel_omni">Omni</string>
+    <string name="wheel_traction">Traction</string>
+    <string name="wheel_tank_tread">Tank Tread</string>
     <string name="drive_train">Drive Train</string>
     <string name="team_list_io_error">Unable to read team list file. Check that the path in Settings exists.</string>
     <string name="team_list_parse_error">Failed to parse team list file</string>
@@ -18,5 +19,39 @@
     <string name="hint_width">Width</string>
     <string name="label_length">Length</string>
     <string name="label_height">Height</string>
-    <string name="label_auto_caps">Auto Capabillities</string>
+    <string name="label_starting_position">Starting Position</string>
+    <string name="label_loading_methods">Loading Methods</string>
+    <string name="label_ground_pick">Ground Pick</string>
+    <string name="label_slot_feed">Slot Feed</string>
+    <string name="label_robot_set">Robot Set</string>
+    <string name="label_totes">Totes</string>
+    <string name="label_bins">Bins</string>
+    <string name="label_step_container">Container from step</string>
+    <string name="label_auto_caps">Auto Capabilities</string>
+    <string name="label_teleop_caps">Teleop Capabilities</string>
+    <string name="label_teleop_totes">Tote Stack Height</string>
+    <string name="label_teleop_bins">Bin Stack Height</string>
+    <string name="label_straight_bin">Straightens Bin</string>
+    <string-array name="drive_trains">
+        <item>Tank</item>
+        <item>Swerve</item>
+        <item>Slide</item>
+        <item>Jump</item>
+    </string-array>
+    <string-array name="wheels">
+        <item>@string/wheel_mecanum</item>
+        <item>@string/wheel_omni</item>
+        <item>@string/wheel_traction</item>
+        <item>@string/wheel_tank_tread</item>
+    </string-array>
+    <string-array name="starting_positions">
+        <item>Left Stack</item>
+        <item>Middle Stack</item>
+        <item>Right Stack</item>
+        <item>Near Step</item>
+    </string-array>
+    <string-array name="loading_methods">
+        <item>@string/label_ground_pick</item>
+        <item>@string/label_slot_feed</item>
+    </string-array>
 </resources>

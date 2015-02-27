@@ -75,6 +75,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/label_drive_train"
+            android:entries="@array/drive_trains"
             android:imeOptions="actionNext"
             android:inputType="textCapWords|textAutoComplete"
             android:nextFocusForward="@+id/wheel_traction" />
@@ -95,14 +96,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="@string/drivetrain_traction" />
+                android:text="@string/wheel_traction" />
 
             <CheckBox
                 android:id="@+id/wheel_omni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="@string/drivetrain_omni" />
+                android:text="@string/wheel_omni" />
 
             <CheckBox
                 android:id="@+id/wheel_mecanum"
@@ -110,7 +111,15 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:nextFocusForward="@+id/robot_width"
-                android:text="@string/drivetrain_mecanum" />
+                android:text="@string/wheel_mecanum" />
+
+            <CheckBox
+                android:id="@+id/wheel_tank_tread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:nextFocusForward="@+id/robot_width"
+                android:text="@string/wheel_tank_tread" />
 
         </LinearLayout>
 
@@ -165,6 +174,29 @@
                 android:hint="@string/label_height"
                 android:inputType="numberDecimal" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/label_robot_weight"
+            android:id="@+id/label_robot_weight"
+            android:layout_below="@+id/dimensions"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/label_top_margin" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/robot_weight"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/label_robot_weight"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

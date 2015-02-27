@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
     tools:context="org.teamtators.pitscout.ui.TeleopFragment">
 
     <RelativeLayout
@@ -9,6 +11,99 @@
         android:layout_height="wrap_content">
 
 
+        <TextView
+            android:id="@+id/label_teleop_caps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_teleop_caps"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:id="@+id/teleop_caps"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/label_teleop_caps"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <NumberPicker
+                    android:id="@+id/teleop_totes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/label_teleop_totes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/label_teleop_totes"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <NumberPicker
+                    android:id="@+id/teleop_bins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/label_teleop_bins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/label_teleop_bins"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/straight_bin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/teleop_caps"
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:text="@string/label_straight_bin"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textOff="@string/switch_no"
+            android:textOn="@string/switch_yes" />
+
+        <Switch
+            android:id="@+id/manip_litter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/straight_bin"
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:text="@string/label_manip_litter"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textOff="@string/switch_no"
+            android:textOn="@string/switch_yes" />
     </RelativeLayout>
 
 </ScrollView>

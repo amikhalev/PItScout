@@ -6,4 +6,11 @@
     <string name="button_name">Next</string>
     <string name="error_enter_name">Please enter your name</string>
     <string name="label_competition">Competition</string>
+    <string-array name="competitions">
+        <item>Dallas</item>
+        <item>Utah</item>
+        <item>Arizona</item>
+        <item>Championships</item>
+        <item>Other</item>
+    </string-array>
 </resources>

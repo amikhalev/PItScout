@@ -11,12 +11,14 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.teamtators.pitscout.DataPopulator;
 import org.teamtators.pitscout.PitScoutBaseActivity;
 import org.teamtators.pitscout.R;
 import org.teamtators.pitscout.ScoutingData;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
@@ -82,10 +84,23 @@ public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.
                     (DataPopulator) findFragmentByPosition(2)};
         }
         for (DataPopulator populator : populators) {
+            if (populator == null) {
+                Toast.makeText(this, "Fill out all of the scouting pages before submitting", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (!populator.populateScoutingData(data))
                 return;
         }
         Log.i(getLocalClassName(), data.toCsvLine());
+        try {
+            data.appendToFile(this);
+        } catch (IOException e) {
+            Toast.makeText(this, "Failed to write scouting data to file", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return;
+        }
+        Intent intent = new Intent(getApplicationContext(), ScoutingActivity.class);
+        startActivity(intent);
     }
 
     @Override
