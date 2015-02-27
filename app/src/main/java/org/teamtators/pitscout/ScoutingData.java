@@ -28,6 +28,8 @@ public class ScoutingData {
     private int teleopBins;
     private boolean straightensBin;
     private boolean manipulatesLitter;
+    private double driverPracticeTime;
+    private double humanPlayerPracticeTime;
 
     public ScoutingData() {
     }
@@ -35,7 +37,7 @@ public class ScoutingData {
     public static String getCsvHeader() {
         return "Team Number,Pit Contact,Drive Train,Wheels,Width,Length,Height,Weight," +
                 "Robot Set,Auto Totes,Auto Bins,Starting Position,Loading Methods,Tote Height,Bin Height," +
-                "Straightens Bin,Manipulates Litter";
+                "Straightens Bin,Manipulates Litter,Driver Practice Time,Human Player Practice Time";
     }
 
     public void setTeamNumber(int teamNumber) {
@@ -106,6 +108,14 @@ public class ScoutingData {
         this.manipulatesLitter = manipulatesLitter;
     }
 
+    public void setDriverPracticeTime(double driverPracticeTime) {
+        this.driverPracticeTime = driverPracticeTime;
+    }
+
+    public void setHumanPlayerPracticeTime(double humanPlayerPracticeTime) {
+        this.humanPlayerPracticeTime = humanPlayerPracticeTime;
+    }
+
     public String toCsvLine() {
         final StringBuilder sb = new StringBuilder();
         sb.append(teamNumber);
@@ -135,6 +145,8 @@ public class ScoutingData {
         sb.append(',').append(teleopBins);
         sb.append(',').append(straightensBin);
         sb.append(',').append(manipulatesLitter);
+        sb.append(',').append(driverPracticeTime);
+        sb.append(',').append(humanPlayerPracticeTime);
         return sb.toString();
     }
 

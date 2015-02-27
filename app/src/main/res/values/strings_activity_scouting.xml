@@ -32,6 +32,9 @@
     <string name="label_teleop_totes">Tote Stack Height</string>
     <string name="label_teleop_bins">Bin Stack Height</string>
     <string name="label_straight_bin">Straightens Bin</string>
+    <string name="label_practice_time">Practice Time (hours)</string>
+    <string name="label_driver_practice">Driver</string>
+    <string name="label_human_practice">Human Player</string>
     <string-array name="drive_trains">
         <item>Tank</item>
         <item>Swerve</item>

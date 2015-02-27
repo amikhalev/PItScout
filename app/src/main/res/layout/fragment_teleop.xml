@@ -104,6 +104,42 @@
             android:textColor="@color/primary_text_default_material_light"
             android:textOff="@string/switch_no"
             android:textOn="@string/switch_yes" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/label_practice_time"
+            android:id="@+id/label_practice_time"
+            android:layout_below="@+id/manip_litter"
+            android:layout_marginTop="@dimen/label_top_margin" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/label_practice_time">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/driver_practice"
+                android:layout_weight="1"
+                android:hint="@string/label_driver_practice" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/human_practice"
+                android:layout_weight="1"
+                android:hint="@string/label_human_practice" />
+        </LinearLayout>
     </RelativeLayout>
 
 </ScrollView>

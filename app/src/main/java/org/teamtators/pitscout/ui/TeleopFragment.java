@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import org.teamtators.pitscout.DataPopulator;
 import org.teamtators.pitscout.PitScoutBaseFragment;
@@ -26,6 +28,10 @@ public class TeleopFragment extends PitScoutBaseFragment implements DataPopulato
     Switch straightBin;
     @InjectView(R.id.manip_litter)
     Switch manipLitter;
+    @InjectView(R.id.driver_practice)
+    EditText driverPractice;
+    @InjectView(R.id.human_practice)
+    EditText humanPractice;
 
     public TeleopFragment() {
     }
@@ -63,6 +69,22 @@ public class TeleopFragment extends PitScoutBaseFragment implements DataPopulato
         data.setTeleopBins(teleopBins.getValue());
         data.setStraightensBin(straightBin.isChecked());
         data.setManipulatesLitter(manipLitter.isChecked());
+        try {
+            data.setDriverPracticeTime(Double.parseDouble(driverPractice.getText().toString()));
+        } catch (NumberFormatException e) {
+            makeErrorToast("Driver Practice Time").show();
+            return false;
+        }
+        try {
+            data.setHumanPlayerPracticeTime(Double.parseDouble(humanPractice.getText().toString()));
+        } catch (NumberFormatException e) {
+            makeErrorToast("Human Player Practice Time").show();
+            return false;
+        }
         return true;
+    }
+
+    protected Toast makeErrorToast(String missing) {
+        return Toast.makeText(getActivity(), "Please enter a valid " + missing, Toast.LENGTH_SHORT);
     }
 }
