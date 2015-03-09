@@ -4,23 +4,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 
-import org.teamtators.pitscout.DataPopulator;
 import org.teamtators.pitscout.PitScoutBaseFragment;
 import org.teamtators.pitscout.R;
 import org.teamtators.pitscout.ScoutingData;
+import org.teamtators.pitscout.ScoutingDataView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 
-public class AutoFragment extends PitScoutBaseFragment implements DataPopulator {
+public class AutoFragment extends PitScoutBaseFragment implements ScoutingDataView {
+    private static final String KEY_DATA = "scoutingData";
     @InjectView(R.id.robot_set)
     CheckBox robotSet;
     @InjectView(R.id.auto_totes)
@@ -29,8 +32,7 @@ public class AutoFragment extends PitScoutBaseFragment implements DataPopulator 
     NumberPicker autoBins;
     @InjectView(R.id.starting_position)
     Spinner startingPosition;
-    @InjectViews({R.id.ground_pick, R.id.slot_feed})
-    CheckBox[] loadingMethodCheckBoxes;
+    private ArrayAdapter<String> startingPositionAdapter;
 
     public AutoFragment() {
     }
@@ -45,6 +47,7 @@ public class AutoFragment extends PitScoutBaseFragment implements DataPopulator 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
     }
 
     @Override
@@ -58,23 +61,36 @@ public class AutoFragment extends PitScoutBaseFragment implements DataPopulator 
         autoBins.setMinValue(0);
         autoBins.setMaxValue(3);
 
+        startingPositionAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.starting_positions));
+        startingPosition.setAdapter(startingPositionAdapter);
+
         return view;
     }
 
     @Override
-    public boolean populateScoutingData(ScoutingData data) {
+    public void modelToView(ScoutingData data) {
+        Boolean robotSet = data.getRobotSet();
+        if (robotSet != null)
+            this.robotSet.setChecked(robotSet);
+        Integer autoTotes = data.getAutoTotes();
+        if (autoTotes != null)
+            this.autoTotes.setValue(autoTotes);
+        Integer autoBins = data.getAutoBins();
+        if (autoBins != null)
+            this.autoBins.setValue(autoBins);
+        startingPosition.setSelection(startingPositionAdapter.getPosition(data.getStartingPosition()));
+    }
+
+    @Override
+    public void viewToModel(ScoutingData data, List<String> missing) {
         data.setRobotSet(robotSet.isChecked());
         data.setAutoTotes(autoTotes.getValue());
         data.setAutoBins(autoBins.getValue());
-        data.setStartingPosition((String) startingPosition.getSelectedItem());
-        List<String> loadingMethods = new ArrayList<>();
-        String[] loadingMethodNames = getResources().getStringArray(R.array.loading_methods);
-        for (int i = 0; i < loadingMethodCheckBoxes.length; ++i) {
-            if (loadingMethodCheckBoxes[i].isChecked()) {
-                loadingMethods.add(loadingMethodNames[i]);
-            }
+        String startingPosition = (String) this.startingPosition.getSelectedItem();
+        data.setStartingPosition(startingPosition);
+        if (startingPosition.isEmpty()) {
+            missing.add(getResources().getString(R.string.label_starting_position));
         }
-        data.setLoadingMethods(loadingMethods.toArray(new String[loadingMethods.size()]));
-        return true;
     }
 }

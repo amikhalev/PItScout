@@ -12,11 +12,11 @@
 
 
         <TextView
+            android:id="@+id/label_auto_caps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/label_auto_caps"
-            android:id="@+id/label_auto_caps" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
             android:id="@+id/auto_caps"
@@ -24,17 +24,17 @@
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/label_auto_caps">
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/label_auto_caps"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <CheckBox
                     android:id="@+id/robot_set"
@@ -116,43 +116,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/label_starting_position"
-            android:entries="@array/starting_positions" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/label_loading_methods"
-            android:id="@+id/label_loading_methods"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/starting_position"
-            android:layout_marginTop="@dimen/label_top_margin" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/label_loading_methods"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_ground_pick"
-                android:id="@+id/ground_pick"
-                android:checked="false" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_slot_feed"
-                android:id="@+id/slot_feed"
-                android:checked="false" />
-        </LinearLayout>
+            android:layout_below="@+id/label_starting_position" />
 
     </RelativeLayout>
 

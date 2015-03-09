@@ -23,13 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/label_team_number"
-            android:hint="@string/text_team_number"
-            android:inputType="number"
-            android:maxLength="4">
-
-            <requestFocus />
-        </Spinner>
+            android:layout_below="@+id/label_team_number"/>
 
         <TextView
             android:id="@+id/label_pit_contact"
@@ -80,7 +74,18 @@
             android:inputType="textCapWords|textAutoComplete"
             android:nextFocusForward="@+id/wheel_traction" />
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/label_wheel_types"
+            android:id="@+id/label_wheel_types"
+            android:layout_below="@+id/drive_train"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/label_top_margin" />
+
+        <org.apmem.tools.layouts.FlowLayout
             android:id="@+id/wheels"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -88,7 +93,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/drive_train"
+            android:layout_below="@+id/label_wheel_types"
             android:orientation="horizontal">
 
             <CheckBox
@@ -121,7 +126,7 @@
                 android:nextFocusForward="@+id/robot_width"
                 android:text="@string/wheel_tank_tread" />
 
-        </LinearLayout>
+        </org.apmem.tools.layouts.FlowLayout>
 
         <TextView
             android:id="@+id/label_robot_dimensions"
@@ -176,27 +181,60 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/label_robot_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/label_robot_weight"
-            android:id="@+id/label_robot_weight"
-            android:layout_below="@+id/dimensions"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/label_top_margin" />
+            android:layout_below="@+id/dimensions"
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:text="@string/label_robot_weight"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
+            android:id="@+id/robot_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/robot_weight"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/label_robot_weight"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Switch
+            android:id="@+id/drive_platform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/robot_weight"
+            android:checked="false"
+            android:text="@string/label_drives_on_platform"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textOff="@string/switch_no"
+            android:textOn="@string/switch_yes" />
+
+        <Switch
+            android:id="@+id/stuck_on_noodle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/drive_platform"
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:checked="false"
+            android:text="@string/label_stuck_on_noodle"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textOff="@string/switch_no"
+            android:textOn="@string/switch_yes" />
 
     </RelativeLayout>
 

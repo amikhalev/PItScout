@@ -14,7 +14,7 @@
     <string name="team_list_parse_error">Failed to parse team list file</string>
     <string name="label_team_number">Team Number</string>
     <string name="label_pit_contact">Pit Contact</string>
-    <string name="label_drive_train">Drive Train</string>
+    <string name="label_drive_train">Drive Train Name</string>
     <string name="label_robot_dimensions">Robot Dimensions (inches)</string>
     <string name="hint_width">Width</string>
     <string name="label_length">Length</string>
@@ -30,11 +30,22 @@
     <string name="label_auto_caps">Auto Capabilities</string>
     <string name="label_teleop_caps">Teleop Capabilities</string>
     <string name="label_teleop_totes">Tote Stack Height</string>
-    <string name="label_teleop_bins">Bin Stack Height</string>
+    <string name="label_teleop_bins">Other\'s Bin Stack Height</string>
     <string name="label_straight_bin">Straightens Bin</string>
     <string name="label_practice_time">Practice Time (hours)</string>
-    <string name="label_driver_practice">Driver</string>
-    <string name="label_human_practice">Human Player</string>
+    <string name="hint_driver_practice">Driver</string>
+    <string name="hint_human_practice">Human Player</string>
+    <string name="label_robot_weight">Robot Weight (lb)</string>
+    <string name="label_manip_litter">Manipulates Litter</string>
+    <string name="error_not_inputed">The following data is missing</string>
+    <string name="error_fill_pages">Fill out all of the scouting pages before submitting</string>
+    <string name="error_write_failed">Failed to write scouting data to file</string>
+    <string name="label_wheel_type">Wheel Type</string>
+    <string name="label_robot_width">Robot Width</string>
+    <string name="label_robot_length">Robot Length</string>
+    <string name="label_robot_height">Robot Height</string>
+    <string name="label_driver_practice">Driver Practice Time</string>
+    <string name="label_human_practice">Human Player Practice Time</string>
     <string-array name="drive_trains">
         <item>Tank</item>
         <item>Swerve</item>
@@ -42,12 +53,13 @@
         <item>Jump</item>
     </string-array>
     <string-array name="wheels">
-        <item>@string/wheel_mecanum</item>
-        <item>@string/wheel_omni</item>
         <item>@string/wheel_traction</item>
+        <item>@string/wheel_omni</item>
+        <item>@string/wheel_mecanum</item>
         <item>@string/wheel_tank_tread</item>
     </string-array>
     <string-array name="starting_positions">
+        <item/>
         <item>Left Stack</item>
         <item>Middle Stack</item>
         <item>Right Stack</item>

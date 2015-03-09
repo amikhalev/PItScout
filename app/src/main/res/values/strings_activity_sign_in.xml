@@ -4,12 +4,14 @@
     <string name="text_sign_in">Sign In</string>
     <string name="label_name">Name</string>
     <string name="button_name">Next</string>
-    <string name="error_enter_name">Please enter your name</string>
+    <string name="error_enter_name">You must enter your name</string>
+    <string name="error_enter_competiiton">You must enter a competition</string>
     <string name="label_competition">Competition</string>
     <string-array name="competitions">
+        <item/>
         <item>Dallas</item>
         <item>Utah</item>
-        <item>Arizona</item>
+        <item>Arizona West</item>
         <item>Championships</item>
         <item>Other</item>
     </string-array>

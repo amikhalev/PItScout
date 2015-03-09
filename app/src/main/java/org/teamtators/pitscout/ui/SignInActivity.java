@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.teamtators.pitscout.PitScoutBaseActivity;
@@ -16,7 +15,6 @@ import org.teamtators.pitscout.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 
 public class SignInActivity extends PitScoutBaseActivity {
     public static final String PREFERENCES_NAME = "scouter_info";
@@ -49,10 +47,11 @@ public class SignInActivity extends PitScoutBaseActivity {
         super.onStart();
     }
 
-    @OnClick(R.id.button_next)
-    protected void onNextClicked() {
-        if (((TextView) findViewById(R.id.scouter_name)).getText().length() == 0) {
-            Toast.makeText(SignInActivity.this, getString(R.string.error_enter_name), Toast.LENGTH_SHORT).show();
+    protected void next() {
+        if (scouterName.getText().length() == 0) {
+            Toast.makeText(this, getString(R.string.error_enter_name), Toast.LENGTH_SHORT).show();
+        } else if (competition.getSelectedItem().equals("")) {
+            Toast.makeText(this, getString(R.string.error_enter_competiiton), Toast.LENGTH_SHORT).show();
         } else {
             preferences.edit()
                     .putString(KEY_SCOUTER_NAME, scouterName.getText().toString())
@@ -64,7 +63,7 @@ public class SignInActivity extends PitScoutBaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_global, menu);
+        getMenuInflater().inflate(R.menu.menu_sign_in, menu);
         return true;
     }
 
@@ -73,6 +72,9 @@ public class SignInActivity extends PitScoutBaseActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
+                break;
+            case R.id.action_next:
+                next();
                 break;
         }
         return super.onOptionsItemSelected(item);

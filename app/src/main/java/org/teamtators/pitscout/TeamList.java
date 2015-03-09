@@ -51,8 +51,8 @@ public class TeamList {
     public void loadTeamList(Context context) throws IOException, ParseException, SecurityException {
         String fileName = PreferenceManager
                 .getDefaultSharedPreferences(context)
-                .getString(SettingsActivity.TEAM_LIST_FILE_PREFERENCE, SettingsActivity.DEFAULT_TEAM_LIST_PATH);
-        Uri uri = Uri.parse(fileName);
+                .getString(SettingsActivity.TEAM_LIST_FILE_PREFERENCE, SettingsActivity.TEAM_LIST_FILE_DEFUALT);
+        Uri uri = Uri.parse("file://" + fileName);
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
         teamList = readTeamList(new InputStreamReader(inputStream));
     }

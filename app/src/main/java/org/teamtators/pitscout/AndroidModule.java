@@ -21,7 +21,6 @@ public class AndroidModule {
 
     @Provides
     @Singleton
-    @ForApplication
     Context provideApplicationContext() {
         return application;
     }

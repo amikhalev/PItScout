@@ -26,7 +26,8 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/label_teleop_caps"
             android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/label_top_margin">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -54,10 +55,34 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <NumberPicker
+                    android:id="@+id/own_stack_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                </NumberPicker>
+
+                <TextView
+                    android:id="@+id/label_own_teleop_bins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/label_own_stack_height"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <NumberPicker
-                    android:id="@+id/teleop_bins"
+                    android:id="@+id/others_stack_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -73,6 +98,85 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/teleop_caps"
+            android:id="@+id/teleop_caps2"
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:id="@+id/ground_pick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/label_ground_pick" />
+
+                <CheckBox
+                    android:id="@+id/slot_feed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/label_slot_feed" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <NumberPicker
+                    android:id="@+id/num_stacks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                </NumberPicker>
+
+                <TextView
+                    android:id="@+id/label_num_stacks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/label_num_stacks"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <NumberPicker
+                    android:id="@+id/coopertition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                </NumberPicker>
+
+                <TextView
+                    android:id="@+id/label_coopertition_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Coopertition Height"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </LinearLayout>
+
         <Switch
             android:id="@+id/straight_bin"
             android:layout_width="wrap_content"
@@ -81,7 +185,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/teleop_caps"
+            android:layout_below="@+id/teleop_caps2"
             android:layout_marginTop="@dimen/label_top_margin"
             android:text="@string/label_straight_bin"
             android:textAppearance="@android:style/TextAppearance.Medium"
@@ -111,7 +215,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/label_practice_time"
             android:id="@+id/label_practice_time"
-            android:layout_below="@+id/manip_litter"
+            android:layout_below="@+id/upside_down_totes"
             android:layout_marginTop="@dimen/label_top_margin" />
 
         <LinearLayout
@@ -129,7 +233,7 @@
                 android:ems="10"
                 android:id="@+id/driver_practice"
                 android:layout_weight="1"
-                android:hint="@string/label_driver_practice" />
+                android:hint="@string/hint_driver_practice" />
 
             <EditText
                 android:layout_width="0dp"
@@ -138,8 +242,25 @@
                 android:ems="10"
                 android:id="@+id/human_practice"
                 android:layout_weight="1"
-                android:hint="@string/label_human_practice" />
+                android:hint="@string/hint_human_practice" />
         </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_upside_down_totes"
+            android:id="@+id/upside_down_totes"
+            android:layout_below="@+id/manip_litter"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:checked="false"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textOff="@string/switch_no"
+            android:textOn="@string/switch_yes" />
     </RelativeLayout>
 
 </ScrollView>
