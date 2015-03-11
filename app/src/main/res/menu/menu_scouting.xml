@@ -2,8 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_comments"
+        android:icon="@drawable/ic_action_communication_comment"
+        android:orderInCategory="20"
+        android:title="@string/label_comments"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_take_picture"
+        android:icon="@drawable/ic_action_image_camera_alt"
+        android:orderInCategory="50"
+        android:title="@string/action_take_picture"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_done"
-        android:icon="@drawable/ic_action_navigation_arrow_forward"
+        android:icon="@drawable/ic_action_done"
         android:orderInCategory="90"
         android:title="@string/label_next"
         app:showAsAction="ifRoom" />

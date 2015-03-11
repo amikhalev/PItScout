@@ -58,20 +58,18 @@
                 android:orientation="vertical">
 
                 <NumberPicker
-                    android:id="@+id/own_stack_height"
+                    android:id="@+id/self_rc_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                </NumberPicker>
+                    android:orientation="vertical" />
 
                 <TextView
-                    android:id="@+id/label_own_teleop_bins"
+                    android:id="@+id/label_self_rc_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/label_own_stack_height"
+                    android:text="@string/label_self_rc_height"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
@@ -82,18 +80,18 @@
                 android:orientation="vertical">
 
                 <NumberPicker
-                    android:id="@+id/others_stack_height"
+                    android:id="@+id/partner_rc_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:orientation="vertical" />
 
                 <TextView
-                    android:id="@+id/label_teleop_bins"
+                    android:id="@+id/label_partner_rc_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/label_teleop_bins"
+                    android:text="@string/label_partner_rc_height"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
         </LinearLayout>
@@ -113,7 +111,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-            <CheckBox
+                <CheckBox
                     android:id="@+id/ground_pick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,13 +170,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Coopertition Height"
+                    android:text="@string/label_coopertition_height"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
         </LinearLayout>
 
         <Switch
-            android:id="@+id/straight_bin"
+            android:id="@+id/sideways_bin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -187,7 +185,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/teleop_caps2"
             android:layout_marginTop="@dimen/label_top_margin"
-            android:text="@string/label_straight_bin"
+            android:text="@string/label_sideways_bin"
             android:textAppearance="@android:style/TextAppearance.Medium"
             android:textColor="@color/primary_text_default_material_light"
             android:textOff="@string/switch_no"
@@ -201,7 +199,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/straight_bin"
+            android:layout_below="@+id/sideways_bin"
             android:layout_marginTop="@dimen/label_top_margin"
             android:text="@string/label_manip_litter"
             android:textAppearance="@android:style/TextAppearance.Medium"

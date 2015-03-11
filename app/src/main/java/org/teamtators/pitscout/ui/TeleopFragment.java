@@ -28,18 +28,18 @@ public class TeleopFragment extends PitScoutBaseFragment implements ScoutingData
     private static final String KEY_DATA = "scoutingData";
     @InjectView(R.id.teleop_totes)
     NumberPicker teleopTotes;
-    @InjectView(R.id.own_stack_height)
-    NumberPicker ownStackHeight;
-    @InjectView(R.id.others_stack_height)
-    NumberPicker othersStackHeight;
+    @InjectView(R.id.self_rc_height)
+    NumberPicker selfRcHeight;
+    @InjectView(R.id.partner_rc_height)
+    NumberPicker partnerRcHeight;
     @InjectViews({R.id.ground_pick, R.id.slot_feed})
     CheckBox[] loadingMethodCheckBoxes;
     @InjectView(R.id.num_stacks)
     NumberPicker numStacks;
     @InjectView(R.id.coopertition)
     NumberPicker coopertition;
-    @InjectView(R.id.straight_bin)
-    Switch straightBin;
+    @InjectView(R.id.sideways_bin)
+    Switch sidewaysBin;
     @InjectView(R.id.manip_litter)
     Switch manipLitter;
     @InjectView(R.id.upside_down_totes)
@@ -73,10 +73,10 @@ public class TeleopFragment extends PitScoutBaseFragment implements ScoutingData
 
         teleopTotes.setMinValue(0);
         teleopTotes.setMaxValue(6);
-        ownStackHeight.setMinValue(0);
-        ownStackHeight.setMaxValue(6);
-        othersStackHeight.setMinValue(0);
-        othersStackHeight.setMaxValue(6);
+        selfRcHeight.setMinValue(0);
+        selfRcHeight.setMaxValue(6);
+        partnerRcHeight.setMinValue(0);
+        partnerRcHeight.setMaxValue(6);
         numStacks.setMinValue(0);
         numStacks.setMaxValue(10);
         coopertition.setMinValue(0);
@@ -91,12 +91,12 @@ public class TeleopFragment extends PitScoutBaseFragment implements ScoutingData
         Integer teleopTotes = data.getTeleopTotes();
         if (teleopTotes != null)
             this.teleopTotes.setValue(teleopTotes);
-        Integer ownStackHeight = data.getOwnBinStackHeight();
+        Integer ownStackHeight = data.getSelfRcStackHeight();
         if (ownStackHeight != null)
-            this.ownStackHeight.setValue(ownStackHeight);
-        Integer othersStackHeight = data.getOthersBinStackHeight();
+            this.selfRcHeight.setValue(ownStackHeight);
+        Integer othersStackHeight = data.getPartnerRcStackHeight();
         if (othersStackHeight != null)
-            this.othersStackHeight.setValue(othersStackHeight);
+            this.partnerRcHeight.setValue(othersStackHeight);
         String[] loadingMethodNames = getResources().getStringArray(R.array.loading_methods);
         String[] loadingMethods = data.getLoadingMethods();
         if (loadingMethods != null) {
@@ -111,9 +111,9 @@ public class TeleopFragment extends PitScoutBaseFragment implements ScoutingData
         Integer coopertitionHeight = data.getCoopertitionHeight();
         if (coopertitionHeight != null)
             coopertition.setValue(coopertitionHeight);
-        Boolean straightensBin = data.getStraightensBin();
+        Boolean straightensBin = data.getSidewaysBin();
         if (straightensBin != null)
-            straightBin.setChecked(straightensBin);
+            sidewaysBin.setChecked(straightensBin);
         Boolean manipulatesLitter = data.getManipulatesLitter();
         if (manipulatesLitter != null)
             manipLitter.setChecked(manipulatesLitter);
@@ -131,9 +131,9 @@ public class TeleopFragment extends PitScoutBaseFragment implements ScoutingData
     @Override
     public void viewToModel(ScoutingData data, List<String> missing) {
         data.setTeleopTotes(teleopTotes.getValue());
-        data.setOthersBinStackHeight(othersStackHeight.getValue());
-        data.setOwnBinStackHeight(ownStackHeight.getValue());
-        data.setOthersBinStackHeight(othersStackHeight.getValue());
+        data.setPartnerRcStackHeight(partnerRcHeight.getValue());
+        data.setSelfRcStackHeight(selfRcHeight.getValue());
+        data.setPartnerRcStackHeight(partnerRcHeight.getValue());
         List<String> loadingMethods = new ArrayList<>();
         String[] loadingMethodNames = getResources().getStringArray(R.array.loading_methods);
         for (int i = 0; i < loadingMethodCheckBoxes.length; ++i) {
@@ -144,7 +144,7 @@ public class TeleopFragment extends PitScoutBaseFragment implements ScoutingData
         data.setLoadingMethods(loadingMethods.toArray(new String[loadingMethods.size()]));
         data.setNumStacks(numStacks.getValue());
         data.setCoopertitionHeight(coopertition.getValue());
-        data.setStraightensBin(straightBin.isChecked());
+        data.setSidewaysBin(sidewaysBin.isChecked());
         data.setManipulatesLitter(manipLitter.isChecked());
         data.setUpsideDownTotes(upsideDownTotes.isChecked());
         Resources res = getResources();

@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Global Strings -->
-    <string name="app_name">PitScout</string>
+    <string name="app_name">Pit Scout 2015</string>
     <string name="action_settings">Settings</string>
     <string name="switch_no">NO</string>
     <string name="switch_yes">YES</string>
@@ -18,9 +18,13 @@
     <string name="label_drives_on_platform">Drives Over Platform</string>
     <string name="label_stuck_on_noodle">Stuck on Noodle</string>
     <string name="label_upside_down_totes">Upside Down Totes</string>
-    <string name="label_own_stack_height">Own Bin Stack Height</string>
     <string name="label_num_stacks"># of Stacks</string>
     <string name="action_take_picture">Take Picture</string>
     <string name="error_pictures_unsupported">Taking pictures is unsupported on this device</string>
+    <string name="label_self_rc_height">Self RC Stack Height</string>
+    <string name="label_partner_rc_height">Partner RC Stack Height</string>
+    <string name="label_step_containers">RCs off Step</string>
+    <string name="label_coopertition_height">Coopertition Height</string>
+    <string name="label_comments">Comments</string>
 
 </resources>

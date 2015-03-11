@@ -14,7 +14,7 @@
     <string name="team_list_parse_error">Failed to parse team list file</string>
     <string name="label_team_number">Team Number</string>
     <string name="label_pit_contact">Pit Contact</string>
-    <string name="label_drive_train">Drive Train Name</string>
+    <string name="label_drive_train">Drive Train</string>
     <string name="label_robot_dimensions">Robot Dimensions (inches)</string>
     <string name="hint_width">Width</string>
     <string name="label_length">Length</string>
@@ -25,13 +25,12 @@
     <string name="label_slot_feed">Slot Feed</string>
     <string name="label_robot_set">Robot Set</string>
     <string name="label_totes">Totes</string>
-    <string name="label_bins">Bins</string>
+    <string name="label_rcs">RCs</string>
     <string name="label_step_container">Container from step</string>
     <string name="label_auto_caps">Auto Capabilities</string>
     <string name="label_teleop_caps">Teleop Capabilities</string>
     <string name="label_teleop_totes">Tote Stack Height</string>
-    <string name="label_teleop_bins">Other\'s Bin Stack Height</string>
-    <string name="label_straight_bin">Straightens Bin</string>
+    <string name="label_sideways_bin">Picks Sideways Bin</string>
     <string name="label_practice_time">Practice Time (hours)</string>
     <string name="hint_driver_practice">Driver</string>
     <string name="hint_human_practice">Human Player</string>
@@ -46,6 +45,7 @@
     <string name="label_robot_height">Robot Height</string>
     <string name="label_driver_practice">Driver Practice Time</string>
     <string name="label_human_practice">Human Player Practice Time</string>
+    <string name="item_select_one">Select One</string>
     <string-array name="drive_trains">
         <item>Tank</item>
         <item>Swerve</item>
@@ -59,7 +59,7 @@
         <item>@string/wheel_tank_tread</item>
     </string-array>
     <string-array name="starting_positions">
-        <item />
+        <item>@string/item_select_one</item>
         <item>Left Stack</item>
         <item>Middle Stack</item>
         <item>Right Stack</item>

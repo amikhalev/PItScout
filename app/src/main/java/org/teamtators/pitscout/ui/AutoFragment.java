@@ -14,13 +14,10 @@ import org.teamtators.pitscout.R;
 import org.teamtators.pitscout.ScoutingData;
 import org.teamtators.pitscout.ScoutingDataView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.InjectViews;
 
 public class AutoFragment extends PitScoutBaseFragment implements ScoutingDataView {
     private static final String KEY_DATA = "scoutingData";
@@ -28,8 +25,10 @@ public class AutoFragment extends PitScoutBaseFragment implements ScoutingDataVi
     CheckBox robotSet;
     @InjectView(R.id.auto_totes)
     NumberPicker autoTotes;
-    @InjectView(R.id.auto_bins)
-    NumberPicker autoBins;
+    @InjectView(R.id.auto_rcs)
+    NumberPicker autoRcs;
+    @InjectView(R.id.auto_step_rcs)
+    NumberPicker autoStepRcs;
     @InjectView(R.id.starting_position)
     Spinner startingPosition;
     private ArrayAdapter<String> startingPositionAdapter;
@@ -58,8 +57,10 @@ public class AutoFragment extends PitScoutBaseFragment implements ScoutingDataVi
 
         autoTotes.setMinValue(0);
         autoTotes.setMaxValue(3);
-        autoBins.setMinValue(0);
-        autoBins.setMaxValue(3);
+        autoRcs.setMinValue(0);
+        autoRcs.setMaxValue(3);
+        autoStepRcs.setMinValue(0);
+        autoStepRcs.setMaxValue(4);
 
         startingPositionAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.starting_positions));
@@ -76,9 +77,12 @@ public class AutoFragment extends PitScoutBaseFragment implements ScoutingDataVi
         Integer autoTotes = data.getAutoTotes();
         if (autoTotes != null)
             this.autoTotes.setValue(autoTotes);
-        Integer autoBins = data.getAutoBins();
-        if (autoBins != null)
-            this.autoBins.setValue(autoBins);
+        Integer autoRcs = data.getAutoRcs();
+        if (autoRcs != null)
+            this.autoRcs.setValue(autoRcs);
+        Integer autoStepRcs = data.getAutoStepRcs();
+        if (autoStepRcs != null)
+            this.autoStepRcs.setValue(autoStepRcs);
         startingPosition.setSelection(startingPositionAdapter.getPosition(data.getStartingPosition()));
     }
 
@@ -86,10 +90,11 @@ public class AutoFragment extends PitScoutBaseFragment implements ScoutingDataVi
     public void viewToModel(ScoutingData data, List<String> missing) {
         data.setRobotSet(robotSet.isChecked());
         data.setAutoTotes(autoTotes.getValue());
-        data.setAutoBins(autoBins.getValue());
+        data.setAutoRcs(autoRcs.getValue());
+        data.setAutoStepRcs(autoStepRcs.getValue());
         String startingPosition = (String) this.startingPosition.getSelectedItem();
         data.setStartingPosition(startingPosition);
-        if (startingPosition.isEmpty()) {
+        if (startingPosition.equals(getResources().getString(R.string.item_select_one))) {
             missing.add(getResources().getString(R.string.label_starting_position));
         }
     }

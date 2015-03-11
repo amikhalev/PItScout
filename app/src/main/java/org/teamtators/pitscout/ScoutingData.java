@@ -2,8 +2,6 @@ package org.teamtators.pitscout;
 
 import android.content.Context;
 import android.os.Environment;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import org.teamtators.pitscout.ui.SignInActivity;
 
@@ -25,31 +23,32 @@ public class ScoutingData {
     private Boolean stuckOnNoodle;
     private Boolean robotSet;
     private Integer autoTotes;
-    private Integer autoBins;
+    private Integer autoRcs;
     private String startingPosition;
     private Integer teleopTotes;
-    private Integer ownBinStackHeight;
-    private Integer othersBinStackHeight;
+    private Integer selfRcStackHeight;
+    private Integer partnerRcStackHeight;
     private String[] loadingMethods;
     private Integer numStacks;
     private Integer coopertitionHeight;
-    private Boolean straightensBin;
+    private Boolean sidewaysBin;
     private Boolean manipulatesLitter;
     private Boolean upsideDownTotes;
     private Double driverPracticeTime;
     private Double humanPlayerPracticeTime;
     private String comments;
+    private Integer autoStepRcs;
 
     public ScoutingData() {
     }
 
     public static String getCsvHeader() {
         return "Team Number,Pit Contact,Drive Train,Wheels,Width,Length,Height,Weight," +
-                "Drives on Platform,Stuck on Noodle,Robot Set,Auto Totes,Auto Bins," +
-                "Starting Position,Teleop Tote Height,Own Bin Height,Others Bin Height," +
-                "Loading Methods,Number of Stacks,Coopertition Height,Straightens Bin," +
+                "Drives on Platform,Stuck on Noodle,Robot Set,Auto Totes,Auto RCs," +
+                "Starting Position,Teleop Tote Height,Self RC Stack Height,Partner RC Stack Height," +
+                "Loading Methods,Number of Stacks,Coopertition Height,Picks Sideways Bin," +
                 "Manipulates Litter,Upside Down Totes,Driver Practice Time," +
-                "Human Player Practice Time,Comments";
+                "Human Player Practice Time,Comments,Auto Step RCs,Scouter Name";
     }
 
     public Integer getTeamNumber() {
@@ -148,12 +147,12 @@ public class ScoutingData {
         this.autoTotes = autoTotes;
     }
 
-    public Integer getAutoBins() {
-        return autoBins;
+    public Integer getAutoRcs() {
+        return autoRcs;
     }
 
-    public void setAutoBins(Integer autoBins) {
-        this.autoBins = autoBins;
+    public void setAutoRcs(Integer autoBins) {
+        this.autoRcs = autoBins;
     }
 
     public String getStartingPosition() {
@@ -172,20 +171,20 @@ public class ScoutingData {
         this.teleopTotes = teleopTotes;
     }
 
-    public Integer getOwnBinStackHeight() {
-        return ownBinStackHeight;
+    public Integer getSelfRcStackHeight() {
+        return selfRcStackHeight;
     }
 
-    public void setOwnBinStackHeight(Integer ownBinStackHeight) {
-        this.ownBinStackHeight = ownBinStackHeight;
+    public void setSelfRcStackHeight(Integer selfRcStackHeight) {
+        this.selfRcStackHeight = selfRcStackHeight;
     }
 
-    public Integer getOthersBinStackHeight() {
-        return othersBinStackHeight;
+    public Integer getPartnerRcStackHeight() {
+        return partnerRcStackHeight;
     }
 
-    public void setOthersBinStackHeight(Integer othersBinStackHeight) {
-        this.othersBinStackHeight = othersBinStackHeight;
+    public void setPartnerRcStackHeight(Integer partnerRcStackHeight) {
+        this.partnerRcStackHeight = partnerRcStackHeight;
     }
 
     public String[] getLoadingMethods() {
@@ -212,12 +211,12 @@ public class ScoutingData {
         this.coopertitionHeight = coopertitionHeight;
     }
 
-    public Boolean getStraightensBin() {
-        return straightensBin;
+    public Boolean getSidewaysBin() {
+        return sidewaysBin;
     }
 
-    public void setStraightensBin(Boolean straightensBin) {
-        this.straightensBin = straightensBin;
+    public void setSidewaysBin(Boolean sidewaysBin) {
+        this.sidewaysBin = sidewaysBin;
     }
 
     public Boolean getManipulatesLitter() {
@@ -279,11 +278,11 @@ public class ScoutingData {
         sb.append(',').append(stuckOnNoodle);
         sb.append(',').append(robotSet);
         sb.append(',').append(autoTotes);
-        sb.append(',').append(autoBins);
+        sb.append(',').append(autoRcs);
         sb.append(',').append(startingPosition);
         sb.append(',').append(teleopTotes);
-        sb.append(',').append(ownBinStackHeight);
-        sb.append(',').append(othersBinStackHeight);
+        sb.append(',').append(selfRcStackHeight);
+        sb.append(',').append(partnerRcStackHeight);
         sb.append(',');
         for (int i = 0; i < loadingMethods.length; ++i) {
             if (i > 0)
@@ -292,12 +291,13 @@ public class ScoutingData {
         }
         sb.append(',').append(numStacks);
         sb.append(',').append(coopertitionHeight);
-        sb.append(',').append(straightensBin);
+        sb.append(',').append(sidewaysBin);
         sb.append(',').append(manipulatesLitter);
         sb.append(',').append(upsideDownTotes);
         sb.append(',').append(driverPracticeTime);
         sb.append(',').append(humanPlayerPracticeTime);
         sb.append(',').append(comments);
+        sb.append(',').append(autoStepRcs);
         return sb.toString();
     }
 
@@ -321,8 +321,18 @@ public class ScoutingData {
             writer = new OutputStreamWriter(new FileOutputStream(scoutingFile, true));
         }
         writer.write(toCsvLine());
+        String scouterName = context.getSharedPreferences(SignInActivity.PREFERENCES_NAME, Context.MODE_PRIVATE)
+                .getString(SignInActivity.KEY_SCOUTER_NAME, "");
+        writer.write(',' + scouterName);
         writer.write('\n');
         writer.close();
     }
 
+    public Integer getAutoStepRcs() {
+        return autoStepRcs;
+    }
+
+    public void setAutoStepRcs(Integer autoStepRcs) {
+        this.autoStepRcs = autoStepRcs;
+    }
 }

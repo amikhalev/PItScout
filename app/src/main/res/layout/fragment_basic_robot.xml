@@ -69,7 +69,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/label_drive_train"
-            android:entries="@array/drive_trains"
             android:imeOptions="actionNext"
             android:inputType="textCapWords|textAutoComplete"
             android:nextFocusForward="@+id/wheel_traction" />

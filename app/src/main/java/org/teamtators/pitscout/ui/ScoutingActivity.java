@@ -1,9 +1,13 @@
 package org.teamtators.pitscout.ui;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.teamtators.pitscout.DataManager;
@@ -22,7 +27,11 @@ import org.teamtators.pitscout.R;
 import org.teamtators.pitscout.ScoutingData;
 import org.teamtators.pitscout.ScoutingDataView;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,6 +43,7 @@ import butterknife.Optional;
 
 
 public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.TabListener {
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     SectionsPagerAdapter mSectionsPagerAdapter;
     @InjectView(R.id.pager)
     @Optional
@@ -41,6 +51,8 @@ public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.
     @Inject
     DataManager dataManager;
     private ScoutingData scoutingData;
+    @Inject
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +84,41 @@ public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
+            case R.id.action_take_picture:
+                takePicture();
+                break;
+            case R.id.action_comments:
+                openComments();
+                break;
             case R.id.action_done:
-                next();
+                done();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openComments() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.ic_action_communication_comment_inv);
+        builder.setTitle(getResources().getString(R.string.label_comments));
+        final EditText view = new EditText(this);
+        view.setLines(5);
+        String comments = scoutingData.getComments();
+        if (comments != null)
+            view.setText(comments);
+        builder.setView(view);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                scoutingData.setComments(view.getText().toString());
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
     }
 
     public Fragment findFragmentByPosition(int position) {
@@ -84,7 +126,7 @@ public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.
                 .findFragmentByTag("android:switcher:" + mViewPager.getId() + ":" + mSectionsPagerAdapter.getItemId(position));
     }
 
-    private void next() {
+    private void done() {
         scoutingData = dataManager.getData();
         List<String> missing = new ArrayList<>();
         if (!populateModel(missing)) return;
@@ -108,7 +150,15 @@ public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.
 
     private void succeed() {
         Log.i(getLocalClassName(), scoutingData.toCsvLine());
-        startActivity(new Intent(getApplicationContext(), CommentsActivity.class));
+        try {
+            scoutingData.appendToFile(this);
+        } catch (IOException e) {
+            Toast.makeText(this, getString(R.string.error_write_failed), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return;
+        }
+        Toast.makeText(context, getString(R.string.message_data_written), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(context, ScoutingActivity.class));
     }
 
     private void displayMissingDatas(List<String> missing) {
@@ -146,6 +196,40 @@ public class ScoutingActivity extends PitScoutBaseActivity implements ActionBar.
                     findFragmentByPosition(2)};
         }
         return fragments;
+    }
+
+    private void takePicture() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File imageFile;
+            try {
+                imageFile = getImageFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(context, "Failed to save image", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } else {
+            Toast.makeText(context, getString(R.string.error_pictures_unsupported), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    protected File getImageFile() throws IOException {
+        String competition = context
+                .getSharedPreferences(SignInActivity.PREFERENCES_NAME, Context.MODE_PRIVATE)
+                .getString(SignInActivity.KEY_COMPETITION, "");
+        Integer teamNumber = scoutingData.getTeamNumber();
+        String timeStamp = new SimpleDateFormat("HH.mm.ss", Locale.US).format(new Date());
+        String imageFileName = competition + "_" + teamNumber + "_" + timeStamp;
+        File directory = new File(Environment.getExternalStorageDirectory(), context.getPackageName());
+        return File.createTempFile(imageFileName, ".jpg", directory);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

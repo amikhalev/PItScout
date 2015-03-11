@@ -90,10 +90,11 @@ public class BasicRobotFragment extends PitScoutBaseFragment implements Scouting
 
         updateTeamList();
 
-        ArrayAdapter<String> driveTrainAdapter = new ArrayAdapter<String>(context,
+        ArrayAdapter<String> driveTrainAdapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.drive_trains));
         driveTrain.setAdapter(driveTrainAdapter);
+        
 
         return view;
     }

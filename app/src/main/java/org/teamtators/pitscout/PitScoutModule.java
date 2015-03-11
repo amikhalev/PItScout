@@ -2,7 +2,6 @@ package org.teamtators.pitscout;
 
 import org.teamtators.pitscout.ui.AutoFragment;
 import org.teamtators.pitscout.ui.BasicRobotFragment;
-import org.teamtators.pitscout.ui.CommentsActivity;
 import org.teamtators.pitscout.ui.ScoutingActivity;
 import org.teamtators.pitscout.ui.SettingsActivity;
 import org.teamtators.pitscout.ui.SignInActivity;
@@ -23,8 +22,7 @@ import dagger.Provides;
                 SettingsActivity.class,
                 BasicRobotFragment.class,
                 AutoFragment.class,
-                TeleopFragment.class,
-                CommentsActivity.class
+                TeleopFragment.class
         },
         complete = false
 )
