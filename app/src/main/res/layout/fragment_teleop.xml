@@ -25,9 +25,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/label_teleop_caps"
+            android:layout_marginTop="@dimen/label_top_margin"
             android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/label_top_margin">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -55,14 +55,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <NumberPicker
                     android:id="@+id/own_stack_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                 </NumberPicker>
 
@@ -99,21 +99,21 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/teleop_caps2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@+id/teleop_caps"
-            android:id="@+id/teleop_caps2"
             android:layout_marginTop="@dimen/label_top_margin"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <CheckBox
+            <CheckBox
                     android:id="@+id/ground_pick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,14 +132,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <NumberPicker
                     android:id="@+id/num_stacks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                 </NumberPicker>
 
@@ -156,14 +156,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <NumberPicker
                     android:id="@+id/coopertition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                 </NumberPicker>
 
@@ -210,53 +210,53 @@
             android:textOn="@string/switch_yes" />
 
         <TextView
+            android:id="@+id/label_practice_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/label_practice_time"
-            android:id="@+id/label_practice_time"
             android:layout_below="@+id/upside_down_totes"
-            android:layout_marginTop="@dimen/label_top_margin" />
+            android:layout_marginTop="@dimen/label_top_margin"
+            android:text="@string/label_practice_time"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/label_practice_time">
+            android:layout_below="@+id/label_practice_time"
+            android:orientation="horizontal">
 
             <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
                 android:id="@+id/driver_practice"
-                android:layout_weight="1"
-                android:hint="@string/hint_driver_practice" />
-
-            <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/human_practice"
                 android:layout_weight="1"
-                android:hint="@string/hint_human_practice" />
+                android:ems="10"
+                android:hint="@string/hint_driver_practice"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/human_practice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/hint_human_practice"
+                android:inputType="numberDecimal" />
         </LinearLayout>
 
         <Switch
+            android:id="@+id/upside_down_totes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_upside_down_totes"
-            android:id="@+id/upside_down_totes"
-            android:layout_below="@+id/manip_litter"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/manip_litter"
             android:layout_marginTop="@dimen/label_top_margin"
             android:checked="false"
+            android:text="@string/label_upside_down_totes"
             android:textAppearance="@android:style/TextAppearance.Medium"
             android:textColor="@color/primary_text_default_material_light"
             android:textOff="@string/switch_no"
