@@ -14,7 +14,7 @@ public class SettingsActivity extends Activity {
     public static final String TEAM_LIST_FILE_PREFERENCE = "pref_team_list_file";
     public static final String TEAM_LIST_FILE_DEFUALT = Uri.parse(Environment
             .getExternalStorageDirectory()
-            .getAbsolutePath() + "/teamlist.csv").getPath();
+            .getAbsolutePath() + "/team_names.csv").getPath();
     public static final String TAG = "SettingsActivity";
 
     @Override

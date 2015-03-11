@@ -32,17 +32,16 @@ public class TeamList {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // magic csv regex!
-            if (parts.length != 3)
-                throw new ParseException("Expected three parts in line", offset);
-            String location = parts[0];
+            if (parts.length != 2)
+                throw new ParseException("Expected two parts in line", offset);
             String name = parts[1];
             int number;
             try {
-                number = Integer.parseInt(parts[2]);
+                number = Integer.parseInt(parts[0]);
             } catch (NumberFormatException e) {
                 throw new ParseException("Invalid team number", offset);
             }
-            result.add(new Team(number, name, location));
+            result.add(new Team(number, name));
             offset += line.length();
         }
         return result;
@@ -67,12 +66,10 @@ public class TeamList {
     public static class Team {
         private int number;
         private String name;
-        private String location;
 
-        public Team(int number, String name, String location) {
+        public Team(int number, String name) {
             this.number = number;
             this.name = name;
-            this.location = location;
         }
 
         public int getNumber() {
@@ -81,10 +78,6 @@ public class TeamList {
 
         public String getName() {
             return name;
-        }
-
-        public String getLocation() {
-            return location;
         }
     }
 }
