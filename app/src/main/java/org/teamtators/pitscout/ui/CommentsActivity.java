@@ -85,13 +85,13 @@ public class CommentsActivity extends PitScoutBaseActivity {
             Toast.makeText(context, getString(R.string.error_pictures_unsupported), Toast.LENGTH_LONG).show();
         }
     }
-    
+
     protected File getImageFile() throws IOException {
         String competition = context
                 .getSharedPreferences(SignInActivity.PREFERENCES_NAME, Context.MODE_PRIVATE)
                 .getString(SignInActivity.KEY_COMPETITION, "");
         Integer teamNumber = scoutingData.getTeamNumber();
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        String timeStamp = new SimpleDateFormat("HH.mm.ss", Locale.US).format(new Date());
         String imageFileName = competition + "_" + teamNumber + "_" + timeStamp;
         File directory = new File(Environment.getExternalStorageDirectory(), context.getPackageName());
         return File.createTempFile(imageFileName, ".jpg", directory);
