@@ -8,7 +8,7 @@
         android:orderInCategory="10"
         android:title="@string/action_take_picture"
         app:showAsAction="ifRoom" />
-    
+
     <item
         android:id="@+id/action_done"
         android:icon="@drawable/ic_action_done"

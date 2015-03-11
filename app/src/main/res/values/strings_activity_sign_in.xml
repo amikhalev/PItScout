@@ -8,7 +8,7 @@
     <string name="error_enter_competiiton">You must enter a competition</string>
     <string name="label_competition">Competition</string>
     <string-array name="competitions">
-        <item/>
+        <item />
         <item>Dallas</item>
         <item>Utah</item>
         <item>Arizona West</item>

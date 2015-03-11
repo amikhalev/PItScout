@@ -59,7 +59,7 @@
         <item>@string/wheel_tank_tread</item>
     </string-array>
     <string-array name="starting_positions">
-        <item/>
+        <item />
         <item>Left Stack</item>
         <item>Middle Stack</item>
         <item>Right Stack</item>
